@@ -55,7 +55,13 @@ function expressionCalculator(expr) {
     }
 
     equation = calcPlusMinus(calcDivisionMultiplication(equation));
-    return Number(equation.toFixed(4));
+
+    if (equation == equation.toFixed(4)) {
+        return equation;
+    }
+    if (equation !== equation.toFixed(4)) {
+        return Number(equation.toFixed(4));
+    }
 }
 
 
