@@ -58,12 +58,13 @@ function expressionCalculator(expr) {
 
     equation = calcPlusMinus(calcDivisionMultiplication(equation));
 
-    if (Number.isInteger(equation)) {
-        return Number(equation);
-    }
-    if (equation !== equation.toFixed(4)) {
-        return Number(equation.toFixed(4));
-    }
+    // if (Number.isInteger(equation)) {
+    //     return Number(equation);
+    // }
+    // if (equation !== equation.toFixed(4)) {
+    //     return Number(equation.toFixed(4));
+    // }
+    return Number(equation);
 }
 
 
