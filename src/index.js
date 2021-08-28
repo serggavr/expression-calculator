@@ -29,11 +29,13 @@ function expressionCalculator(expr) {
             if (equation[i] === "") {equation.splice(i,1)};
             if (equation[i] === "*" && equation[i + 1] !== "(" && equation[i - 1] !== ")") {
                 x = equation[i - 1] * equation[i + 1];
+                if (isFinite(x)) { throw new TypeError("Division by zero.")};
                 equation.splice(i - 1, 3, x);
                 i--;
                 }
             if (equation[i] === "/" && equation[i + 1] !== "(" && equation[i - 1] !== ")") {
                 x = equation[i - 1] / equation[i + 1];
+                if (isFinite(x)) { throw new TypeError("Division by zero.")};
                 equation.splice(i - 1, 3, x);
                 i--;
                 }
