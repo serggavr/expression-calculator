@@ -58,7 +58,7 @@ function expressionCalculator(expr) {
 
     equation = calcPlusMinus(calcDivisionMultiplication(equation));
 
-    if (equation % 0.5) {
+    if (Number.isInteger(equation)) {
         return equation;
     }
     if (equation !== equation.toFixed(4)) {
