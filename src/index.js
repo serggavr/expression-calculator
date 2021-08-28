@@ -65,7 +65,7 @@ function expressionCalculator(expr) {
     }
 
     equation = delEmptyElements(equation);
-    equation = checkPairedBrackets(equation);
+    checkPairedBrackets(equation);
     equation = calcDivisionMultiplication(equation);
 
     while (equation.lastIndexOf("(") !== -1) {
