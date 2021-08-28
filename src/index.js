@@ -38,6 +38,12 @@ function expressionCalculator(expr) {
     return equation;
     }
 
+    function checkPairedBrackets(equation) {
+        let x = equation.filter(x => x==")").length;
+        let y = equation.filter(x => x=="(").length;
+        if (x !== y) {throw new ExpressionError("ExpressionError: Brackets must be paired")};
+    }
+
     function calcDivisionMultiplication(equation) {
         let x;
         for (let i = 0; i < equation.length ; i++) {
@@ -59,6 +65,7 @@ function expressionCalculator(expr) {
     }
 
     equation = delEmptyElements(equation);
+    equation = checkPairedBrackets(equation);
     equation = calcDivisionMultiplication(equation);
 
     while (equation.lastIndexOf("(") !== -1) {
