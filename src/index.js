@@ -4,8 +4,13 @@ function eval() {
 }
 
 function expressionCalculator(expr) {
-    let equation = expr.split(" ");
-
+    let seps = [" ","-","+","*","/","(",")"];
+    let equation = expr
+    for (let i = 0; i < seps.length; i++) {
+        equation = equation.split(seps[i]);
+        equation = equation.join(` ${seps[i]} `);
+    }
+    equation = equation.split(" ");
     function calcPlusMinus(eq) {
         let calc = 0;
         for (let i = 0; i < eq.length ; i++) {
@@ -23,10 +28,20 @@ function expressionCalculator(expr) {
         return eq[0];
     }
 
+    function delEmptyElements(equation) {
+        for (let i = 0; i < equation.length; i++) {
+            if (equation[i] === "") {
+                equation.splice(i,1);
+                i--;
+            }
+        }
+    return equation;
+    }
+
     function calcDivisionMultiplication(equation) {
         let x;
         for (let i = 0; i < equation.length ; i++) {
-            if (equation[i] === "") {equation.splice(i,1)};
+            // if (equation[i] === "") {equation.splice(i,1)};
             if (equation[i] === "*" && equation[i + 1] !== "(" && equation[i - 1] !== ")") {
                 x = equation[i - 1] * equation[i + 1];
                 if (x === Infinity) { throw new TypeError("TypeError: Division by zero.")};
@@ -43,6 +58,7 @@ function expressionCalculator(expr) {
         return equation;
     }
 
+    equation = delEmptyElements(equation);
     equation = calcDivisionMultiplication(equation);
 
     while (equation.lastIndexOf("(") !== -1) {
@@ -58,12 +74,6 @@ function expressionCalculator(expr) {
 
     equation = calcPlusMinus(calcDivisionMultiplication(equation));
 
-    // if (Number.isInteger(equation)) {
-    //     return Number(equation);
-    // }
-    // if (equation !== equation.toFixed(4)) {
-    //     return Number(equation.toFixed(4));
-    // }
     return Number(equation);
 }
 
