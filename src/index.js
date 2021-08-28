@@ -39,9 +39,9 @@ function expressionCalculator(expr) {
     }
 
     function checkPairedBrackets(equation) {
-        let x = equation.filter(x => x==")").length;
-        let y = equation.filter(x => x=="(").length;
-        if (x !== y) {throw new ExpressionError("ExpressionError: Brackets must be paired")};
+        let x = equation.filter(x => x==")");
+        let y = equation.filter(x => x=="(");
+        if (x.length !== y.length) {throw new Error("ExpressionError: Brackets must be paired")};
     }
 
     function calcDivisionMultiplication(equation) {
