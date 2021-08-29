@@ -62,21 +62,16 @@ function expressionCalculator(expr) {
 
     equation = delEmptyElements(equation);
     checkPairedBrackets(equation);
-    equation = calcDivisionMultiplication(equation);
+    // equation = calcDivisionMultiplication(equation);
 
     while (equation.lastIndexOf("(") !== -1) {
         let splitedEquationStart = equation.lastIndexOf("(");
-        console.log(splitedEquationStart)
         let splitedEquationEnd = equation.indexOf(")", splitedEquationStart);
-        console.log(splitedEquationEnd)
         let splitedEquation = equation.slice(splitedEquationStart + 1, splitedEquationEnd);
-        console.log(splitedEquation)
         let lengthSplitedEquation = splitedEquation.length + 2;
         console.log(lengthSplitedEquation)
         splitedEquation = calcDivisionMultiplication(splitedEquation);
-        console.log(splitedEquation)
         splitedEquation = calcPlusMinus(splitedEquation);
-        console.log(splitedEquation)
         equation.splice(splitedEquationStart, lengthSplitedEquation, splitedEquation);
         console.log(equation)
     }
