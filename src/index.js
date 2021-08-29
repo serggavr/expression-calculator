@@ -69,11 +69,9 @@ function expressionCalculator(expr) {
         let splitedEquationEnd = equation.indexOf(")", splitedEquationStart);
         let splitedEquation = equation.slice(splitedEquationStart + 1, splitedEquationEnd);
         let lengthSplitedEquation = splitedEquation.length + 2;
-        console.log(lengthSplitedEquation)
         splitedEquation = calcDivisionMultiplication(splitedEquation);
         splitedEquation = calcPlusMinus(splitedEquation);
         equation.splice(splitedEquationStart, lengthSplitedEquation, splitedEquation);
-        console.log(equation)
     }
 
     equation = calcPlusMinus(calcDivisionMultiplication(equation));
