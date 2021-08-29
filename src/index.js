@@ -8,7 +8,7 @@ function expressionCalculator(expr) {
     let equation = expr
     for (let i = 0; i < seps.length; i++) {
         equation = equation.split(seps[i]);
-        equation = equation.join(` ${seps[i]} `);
+        equation = equation.join(`${seps[i]}`);
     }
     equation = equation.split(" ");
     function calcPlusMinus(eq) {
@@ -29,14 +29,10 @@ function expressionCalculator(expr) {
     }
 
     function delEmptyElements(equation) {
-        for (let i = 0; i < equation.length; i++) {
-            if (equation[i] === "") {
-                equation.splice(i,1);
-                i--;
-            }
-        }
+        equation = equation.filter(simbols => simbols !== "");
     return equation;
     }
+
 
     function checkPairedBrackets(equation) {
         let x = equation.filter(x => x==")");
@@ -69,14 +65,20 @@ function expressionCalculator(expr) {
     equation = calcDivisionMultiplication(equation);
 
     while (equation.lastIndexOf("(") !== -1) {
-        let splitedEquation = []
         let splitedEquationStart = equation.lastIndexOf("(");
-        let splitedEquationEnd = equation.indexOf(")");
-        splitedEquation = equation.slice(splitedEquationStart + 1, splitedEquationEnd);
+        console.log(splitedEquationStart)
+        let splitedEquationEnd = equation.indexOf(")", splitedEquationStart);
+        console.log(splitedEquationEnd)
+        let splitedEquation = equation.slice(splitedEquationStart + 1, splitedEquationEnd);
+        console.log(splitedEquation)
         let lengthSplitedEquation = splitedEquation.length + 2;
+        console.log(lengthSplitedEquation)
         splitedEquation = calcDivisionMultiplication(splitedEquation);
+        console.log(splitedEquation)
         splitedEquation = calcPlusMinus(splitedEquation);
+        console.log(splitedEquation)
         equation.splice(splitedEquationStart, lengthSplitedEquation, splitedEquation);
+        console.log(equation)
     }
 
     equation = calcPlusMinus(calcDivisionMultiplication(equation));
