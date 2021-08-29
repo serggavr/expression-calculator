@@ -8,7 +8,7 @@ function expressionCalculator(expr) {
     let equation = expr
     for (let i = 0; i < seps.length; i++) {
         equation = equation.split(seps[i]);
-        equation = equation.join(`${seps[i]}`);
+        equation = equation.join(` ${seps[i]} `);
     }
     equation = equation.split(" ");
     function calcPlusMinus(eq) {
